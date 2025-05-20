@@ -1,0 +1,5 @@
+fastapi
+uvicorn[standard]==0.30.6
+fast-alpr
+opencv-python
+streamlit

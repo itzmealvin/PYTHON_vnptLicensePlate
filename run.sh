@@ -1,0 +1,1 @@
+streamlit run app.py & python3 -m uvicorn index:app --reload  
