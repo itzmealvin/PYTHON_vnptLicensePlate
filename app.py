@@ -1,3 +1,11 @@
+"""
+Vehicle License Plate Recognition Web App (Streamlit)
+
+This Streamlit application allows users to upload or capture an image of a vehicle,
+then processes it using an ALPR (Automatic License Plate Recognition) system to detect
+and extract the license plate number.
+"""
+
 import time
 
 import streamlit as st
@@ -27,6 +35,8 @@ if uploaded_image:
             st.error("Không tìm thấy biển số xe")
         else:
             st.success(
-                f'Biển số xe: {response["license_plate"]} - Độ tin cậy {response["ocr_confidence"]:.2f} - Thời gian xử lý: {duration_ms:.2f} s'
+                f"""Biển số xe: {response["license_plate"]}
+                    Độ tin cậy {response["ocr_confidence"]:.2f}
+                    Thời gian xử lý: {duration_ms:.2f} s"""
             )
             st.image(uploaded_image)
