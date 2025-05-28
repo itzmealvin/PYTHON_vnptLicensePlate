@@ -1,11 +1,3 @@
-"""
-Vehicle License Plate Recognition Web App (Streamlit)
-
-This Streamlit application allows users to upload or capture an image of a vehicle,
-then processes it using an ALPR (Automatic License Plate Recognition) system to detect
-and extract the license plate number.
-"""
-
 import time
 
 import streamlit as st
