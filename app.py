@@ -1,34 +1,28 @@
-import time
-
 import streamlit as st
 
-from utils import process_image, return_url
+from apps.label import image_label_only
+from apps.license import license_plate_only
 
-st.set_page_config(page_title="Nhận dạng biển số xe", layout="centered")
-st.title("HỆ THỐNG NHẬN DẠNG BIỂN SỐ XE")
 
-if "vehicle_history" not in st.session_state:
-    st.session_state.vehicle_history = []
+def start_application():
+    st.set_page_config(page_title="Nhận dạng biển số xe", layout="centered")
+    st.title("HỆ THỐNG NHẬN DẠNG BIỂN SỐ XE")
 
-upload = st.toggle("CHẾ ĐỘ TẢI ẢNH")
+    st.sidebar.title("Chế độ hoạt động")
+    mode = st.sidebar.radio(
+        "Vui lòng chọn một chế độ:",
+        ["Nhận diện BSX", "Dán nhãn hình ảnh"],
+    )
 
-if upload:
-    uploaded_image = st.file_uploader("Tải ảnh")
-else:
-    uploaded_image = st.camera_input("Chụp ảnh")
+    st.warning(
+        "Hệ thống có thể tạo ra phản hồi sai. Vui lòng kiểm tra lại thông tin trước khi sử dụng."
+    )
 
-if uploaded_image:
-    with st.spinner("Đang nhận dạng biển số...", show_time=True):
-        start_time = time.time()
-        image_url = return_url(uploaded_image)
-        response = process_image(image_url)
-        duration_ms = time.time() - start_time
-        if response and response.get("error"):
-            st.error("Không tìm thấy biển số xe")
-        else:
-            st.success(
-                f"""Biển số xe: {response["license_plate"]}
-                    Độ tin cậy {response["ocr_confidence"]:.2f}
-                    Thời gian xử lý: {duration_ms:.2f} s"""
-            )
-            st.image(uploaded_image)
+    if mode == "Nhận diện BSX":
+        license_plate_only()
+    elif mode == "Dán nhãn hình ảnh":
+        image_label_only()
+
+
+if __name__ == "__main__":
+    start_application()
