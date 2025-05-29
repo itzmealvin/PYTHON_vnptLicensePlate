@@ -31,3 +31,12 @@ def process_image(image_url):
             "ocr_confidence": alpr_results[0].ocr.confidence,
         }
     return {}
+
+
+def crop_and_save_plate(img, bbox, output_path):
+    x1 = int(bbox.x1)
+    y1 = int(bbox.y1)
+    x2 = int(bbox.x2)
+    y2 = int(bbox.y2)
+    cropped = img[y1:y2, x1:x2]
+    cv2.imwrite(str(output_path), cropped)
