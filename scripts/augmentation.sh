@@ -1,4 +1,4 @@
-python augmentation.py && fast_plate_ocr visualize-augmentation \
+python ./utils/augmentation.py && fast_plate_ocr visualize-augmentation \
     --img-dir 'plate_dataset/train' \
     --columns 2 \
     --show-original \

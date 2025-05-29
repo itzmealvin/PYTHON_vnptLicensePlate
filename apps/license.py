@@ -2,7 +2,7 @@ import time
 
 import streamlit as st
 
-from utils import process_image, return_url
+from utils.utils import process_image, return_url
 
 
 def license_plate_only():
