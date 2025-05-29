@@ -1,5 +1,6 @@
 fastapi
 uvicorn[standard]==0.30.6
-fast-alpr
-opencv-python
+fast_alpr
 streamlit
+fast_plate_ocr[train]
+numpy==1.23.5
