@@ -10,12 +10,12 @@ def start_application():
 
     st.sidebar.title("Chế độ hoạt động")
     mode = st.sidebar.radio(
-        "Vui lòng chọn một chế độ:",
+        "Vui lòng chọn một chế độ",
         ["Nhận diện BSX", "Dán nhãn hình ảnh"],
     )
 
     st.warning(
-        "Hệ thống có thể tạo ra phản hồi sai. Vui lòng kiểm tra lại thông tin trước khi sử dụng."
+        "Hệ thống có thể tạo ra phản hồi sai. Vui lòng kiểm tra lại thông tin trước khi sử dụng"
     )
 
     if mode == "Nhận diện BSX":

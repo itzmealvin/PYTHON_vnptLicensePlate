@@ -12,7 +12,7 @@ def image_label_only():
 
     if not csv_path.exists():
         st.toast(
-            f"Không tìm thấy tệp {csv_path} tại đường dẫn.",
+            f"Không tìm thấy tệp {csv_path}!",
             icon="❌",
         )
         return
@@ -22,7 +22,7 @@ def image_label_only():
         rows = list(reader)
 
     if len(rows) <= 1:
-        st.toast(f"Không có dữ liệu trong tệp {csv_path}", icon="❌")
+        st.toast(f"Không có dữ liệu trong tệp {csv_path}!", icon="❌")
         return
 
     metadata = rows[1:]
@@ -104,11 +104,10 @@ def image_label_only():
                 st.toast("Đã xoá thành công!", icon="✅")
                 st.rerun()
 
-        is_checked = st.button("Duyệt", key=f"checked_{idx}")
         if st.button("Xoá dòng", key=f"delete_{idx}"):
             delete_row()
 
-        if is_checked:
+        if st.button("Duyệt", key=f"checked_{idx}"):
             metadata[idx][1] = fixed_output
             metadata[idx][3] = "True"
             with open(csv_path, "w", encoding="utf-8", newline="") as f:

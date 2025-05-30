@@ -24,7 +24,7 @@ def main():
     for image_file in full_path.glob("*.[jp][pn]g"):
         alpr_results = alpr.predict(str(image_file))
         if not alpr_results:
-            print(f"Không tìm thấy biển số trong file {image_file.name}")
+            print(f"Cannot get result from {image_file.name}")
             continue
 
         result = {
@@ -54,13 +54,13 @@ def main():
     if records:
         df = pd.DataFrame(records)
         df.to_csv(csv_path, index=False)
-        print(f"Đã lưu {len(records)} biển số xe vào {csv_path}")
+        print(f"Saved {len(records)} records to {csv_path}")
 
         max_width = max(x2 - x1 for x1, _, x2, _ in dimensions)
         max_height = max(y2 - y1 for _, y1, _, y2 in dimensions)
-        print(f"Kích thước lớn nhất: {max_width}x{max_height}")
+        print(f"Max dimensions: W:{max_width} x H:{max_height}")
     else:
-        print("Không tìm thấy biển số nào.")
+        print("No license plates found")
 
 
 if __name__ == "__main__":
